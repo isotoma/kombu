@@ -349,7 +349,7 @@ class Channel(virtual.Channel):
             queue.delete_message(message)
         else:
             props = payload.setdefault('properties', {})
-            delivery_info = props.setdefault('delivery_info', {})
+            delivery_info = props.setdefault('delivery_info', {'delivery_tag': ''})
             delivery_info.update({
                 'sqs_message': message, 'sqs_queue': queue,
             })
