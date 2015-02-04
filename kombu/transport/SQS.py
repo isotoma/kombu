@@ -348,7 +348,7 @@ class Channel(virtual.Channel):
         if queue_name in self._noack_queues:
             queue.delete_message(message)
         else:
-            props = payload.setdefault('properties', {})
+            props = payload.setdefault('properties', {'delivery_tag': ''})
             delivery_info = props.setdefault('delivery_info', {})
             delivery_info.update({
                 'sqs_message': message, 'sqs_queue': queue,
